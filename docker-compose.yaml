@@ -1,5 +1,19 @@
 version: '3'
 services:
+  workspace:
+    build:
+      context: ./docker/workspace
+    tty: true
+    volumes:
+      - ./database:/workspace/database
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    networks:
+      - menu-list-api
   mysql:
     image: mysql:8.0
     environment:
